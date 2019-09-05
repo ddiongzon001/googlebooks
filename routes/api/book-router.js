@@ -14,7 +14,7 @@ router
 router
     .route('/:id')
     .get(bookController.getOneBook)
-    .put(bookController.insertBook)
+    .put(bookController.updateBook)
     .delete(bookController.removeBook)
 
 module.exports = router;
