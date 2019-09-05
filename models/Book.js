@@ -1,5 +1,4 @@
 // import mongoose
-
 const mongoose = require ('mongoose');
 
 // get Schema constructor out of mongoose;
