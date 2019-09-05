@@ -2,7 +2,7 @@
 const { Book } = require('../models')
 
 // export methods for handling our routes
-modules.exports = {
+module.exports = {
 
     // get all books from the book mongo database
     getBooks: (req, res) => {
@@ -13,7 +13,7 @@ modules.exports = {
             console.log(err);
             res.status(500).json(err);
         });
-    }
+    },
 
     // get ONE book from the book mongo database
     getOneBook: (req, res) => {
@@ -24,7 +24,7 @@ modules.exports = {
             console.log(err);
             res.status(500).json(err);
         });
-    }
+    },
 
     // insert a book into the book mongo database
     insertBook: (req, res) => {
@@ -35,13 +35,23 @@ modules.exports = {
             console.log(err);
             res.status(500).json(err);
         });
-    }
+    },
+
+    // update a book from the book mongo database
+    updateBook: (req, res) => {
+        Book
+        .findOneAndUpdate({_id: req.params.id}, req.body)
+        .then(dbBookData => res.json(dbBookData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+    },
     
     // remove a book from the book mongo database
     removeBook: (req, res) => {
         Book
-        .findById(req.params.id)
-        .then(dbBookData => dbBookData.remove())
+        .remove({_id: req.params.id})
         .then(dbBookData => res.json(dbBookData))
         .catch(err => {
             console.log(err);
