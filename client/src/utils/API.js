@@ -6,29 +6,34 @@ const APIKEY = `&api_key=${process.env.REACT_APP_API_KEY}`;
 
 export default {
     
-    // get all notes
+    // get all books
     getBooks: () => {
-        return axios.get('/api/notes')
+        return axios.get('/api/books');
     },
 
-    // get one note by id
+    // get one book by id
     getBook: (id) => {
-        return axios.get(`/api/notes/${id}`)
+        return axios.get(`/api/books/${id}`);
     },
     
-    // create note
+    // create book
     insertBook: (newBook) => {
-        return axios.post(`/api/notes`, newBook)
+        return axios.post(`/api/books`, newBook);
     },
     
-    // updateNote by id
+    // updatebook by id
     updateBook: (id, updatedBook) => {
-        return axios.put(`/api/notes/${id}`, updatedBook)
+        return axios.put(`/api/books/${id}`, updatedBook);
     },
 
     // remove book by id
     removeBook: (id) => {
-        return axios.delete(`/api/notes/${id}`);
+        return axios.delete(`/api/books/${id}`);
+    },
+
+    // calling api of google books
+    getGoogleBooks: (title) => {
+        return axios.get(BASEURL+title+APIKEY);
     }
 
 }
