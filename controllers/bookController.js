@@ -26,7 +26,7 @@ module.exports = {
         });
     },
 
-    // insert a book into the book mongo database
+    // post a book into the book mongo database
     insertBook: (req, res) => {
         Book
         .create(req.body)
@@ -58,5 +58,5 @@ module.exports = {
             res.status(500).json(err);
         })
     }
-}
+};
 
