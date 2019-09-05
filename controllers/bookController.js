@@ -6,8 +6,8 @@ module.exports = {
 
     // get all books from the book mongo database
     getBooks: (req, res) => {
-        Book.
-        findAll({})
+        Book
+        .find(req.query)
         .then(dbBookData  => res.status(200).json(dbBookData))
         .catch(err => {
             console.log(err);

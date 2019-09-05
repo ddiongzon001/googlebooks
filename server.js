@@ -1,7 +1,3 @@
-import { listenerCount } from "cluster";
-
-import { Mongoose } from "mongoose";
-
 const express = require('express');
 const mongoose = require('mongoose');
 const logger = require("morgan");
@@ -12,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 
 // set up middleware
 app.use(express.urlencoded({extended: true}));
-app.use(express.JSON());
+app.use(express.json());
 app.use(logger('dev'));
 
 // turn on routes
