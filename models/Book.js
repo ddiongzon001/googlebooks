@@ -6,12 +6,15 @@ const { Schema } = mongoose;
 
 // create schema for books
 const bookSchema = new Schema({
+    bookId: {
+        type: String
+    },
     title: {
         type: String,
         required: true
     },
     authors: {
-        type: String,
+        type: Array,
         required: true
     },
     description: String,

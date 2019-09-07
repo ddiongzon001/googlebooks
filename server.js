@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // set up middleware
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger('dev'));
 
@@ -15,13 +15,17 @@ app.use(logger('dev'));
 const routes = require('./routes');
 app.use(routes);
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+}
+
 // set up mongoose connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/googlebooks', {
     useNewUrlParser: true
 });
 
 // start API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
 })
 

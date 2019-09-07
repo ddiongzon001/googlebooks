@@ -1,6 +1,6 @@
-import React, { Component } from `react`;
+import React, { Component } from 'react';
 
-class Saved extends Compoent{
+class Saved extends Component{
 
     state = {}
 
