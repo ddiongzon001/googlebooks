@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Saved from './pages/Saved';
 import Search from  './pages/Search';
+import Page404 from './pages/404';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
           <Route exact path="/" component={Search} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/saved" component={Saved} />
-          <Route render={() => (<h1>404 Error</h1>)} />
+          <Route component={Page404} />
         </Switch>
       </div>
     </Router>
