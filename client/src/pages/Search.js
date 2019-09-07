@@ -66,6 +66,7 @@ class Search extends Component{
 
         API.insertBook(book).then(() => {
             const savedBookIds = [...this.state.savedBookIds, bookId];
+            this.setState()
         })
     }
 
