@@ -68,24 +68,25 @@ class Search extends Component {
     handleBookSaveBook = bookId => {
         const book = this.state.bookList.find(book => book.bookId === bookId);
         API.insertBook(book)
-          .then(() => {
-            const savedBookIds = [...this.state.savedBookIds, bookId];
-            this.setState({ savedBookIds });
-          })
-          .catch(err => this.setState({ error: err }));
-      };
+            .then(() => {
+                const savedBooksIds = [...this.state.savedBooksIds, bookId];
+                this.setState({ savedBooksIds });
+            })
+            .catch(err => this.setState({ error: err }));
+    };
 
 
     render() {
 
         console.log(this.state.bookList)
+        console.log(this.state.savedBooksIds);
         return (
             <>
                 <Jumbotron
                     fluid
                     bg={'dark'}
                     color={'light'}
-                    pageTitle={"Search for a book"}
+                    pageTitle={"Search for Books!"}
                 />
                 <Container>
                     <Row>
@@ -106,7 +107,7 @@ class Search extends Component {
                                         </div>
                                     )}
                                     <button type="submit" className="btn btn-block btn-dark mt-2">
-                                        Search For Books
+                                        Search
                                     </button>
                                 </form>
                             </Card>
@@ -115,17 +116,38 @@ class Search extends Component {
                 </Container>
                 <Container>
                     <Row>
-                        <Column>
                         {this.state.bookList.map(book => {
-                            return(
-                                <Card
-                                key={book.bookId}
-                                title={book.title}>
-                                    
-                                </Card>
+                            return (
+                                <Column sm={4} key={book.bookId}>
+                                    <Card
+                                        key={book.bookId}
+                                        title={book.title}
+                                        image={book.image}
+                                    >
+                                        {`By: ${
+                                            book.authors.length
+                                                ? book.authors.join(', ')
+                                                : null
+                                            }`}
+                                        <p>{book.description}</p>
+
+                                        <button
+                                            disabled={
+                                                this.state.savedBooksIds.includes(book.bookId)
+                                                    ? true
+                                                    : undefined
+                                            }
+                                            className={'btn btn-success btn-sm'}
+                                            onClick={() =>
+                                                this.handleBookSaveBook(book.bookId)
+                                            }>
+                                            Save Book
+                                        </button>
+
+                                    </Card>
+                                </Column>
                             )
                         })}
-                        </Column>
                     </Row>
                 </Container>
             </>

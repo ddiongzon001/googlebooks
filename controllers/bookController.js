@@ -40,7 +40,7 @@ module.exports = {
     // update a book from the book mongo database
     updateBook: (req, res) => {
         Book
-        .findOneAndUpdate({_id: req.params.id}, req.body)
+        .findOneAndUpdate({bookId: req.params.id}, req.body)
         .then(dbBookData => res.json(dbBookData))
         .catch(err => {
             console.log(err);
@@ -51,7 +51,7 @@ module.exports = {
     // remove a book from the book mongo database
     removeBook: (req, res) => {
         Book
-        .remove({_id: req.params.id})
+        .remove({bookId: req.params.id})
         .then(dbBookData => res.json(dbBookData))
         .catch(err => {
             console.log(err);
