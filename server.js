@@ -11,13 +11,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(logger('dev'));
 
-// turn on routes
-const routes = require('./routes');
-app.use(routes);
-
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
+
+// turn on routes
+const routes = require('./routes');
+app.use(routes);
 
 // set up mongoose connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/googlebooks', {
