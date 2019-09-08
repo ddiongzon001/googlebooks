@@ -1,12 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import Column from '../Column';
+import Container from '../Container';
+import Row from '../Row';
 
 const Jumbotron = props => {
     return (
         <div
             className={`
         jumbotron
-        ${props.fluid ? jumbotron - fluid : ""}
+        ${props.fluid ? "jumbotron-fluid" : ""}
         bg-${props.bg || 'default'}
         text-${props.color || 'dark'}
         text-center 
@@ -24,7 +27,7 @@ const Jumbotron = props => {
                         </NavLink>
                     </Column>
                     <Column md={6}>
-                        <NavLink to="/save" className="btn btn-info btn-lg">
+                        <NavLink to="/saved" className="btn btn-info btn-lg">
                             Saved
                         </NavLink>
                     </Column>
@@ -33,3 +36,5 @@ const Jumbotron = props => {
         </div>
     )
 }
+
+export default Jumbotron;

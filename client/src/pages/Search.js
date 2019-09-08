@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import API from '../utils/API'
-import { eventNames } from 'cluster';
+import API from '../utils/API';
+import Card from '../components/Card';
+import Column from '../components/Column';
+import Container from '../components/Container';
+import Jumbotron from '../components/Jumbotron';
+import Row from '../components/Row';
 
 class Search extends Component {
 
@@ -78,6 +82,7 @@ class Search extends Component {
                     fluid
                     bg={'dark'}
                     color={'light'}
+                    pageTitle={"Search for a book"}
                 />
                 <Container>
                     <Row>
