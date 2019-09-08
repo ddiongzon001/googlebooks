@@ -2,7 +2,6 @@ import axios from 'axios';
 
 // set up functions to talk to backend
 const BASEURL = "https://www.googleapis.com/books/v1/volumes?q=";
-const APIKEY = `&api_key=${process.env.REACT_APP_API_KEY}`;
 
 export default {
     
@@ -33,7 +32,7 @@ export default {
 
     // calling api of google books
     getGoogleBooks: (title) => {
-        return axios.get(BASEURL+title+APIKEY);
+        return axios.get(BASEURL+title);
     }
 
 }

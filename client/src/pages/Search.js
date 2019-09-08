@@ -57,25 +57,28 @@ class Search extends Component {
     };
 
     getSavedBooks = () => {
-        API.getBook()
+        API.getBooks()
             .then(res => {
                 const savedBooksIds = res.data.map(book => book.bookId);
                 this.setState({ savedBooksIds });
             })
-            .catch(err => this.setSTate({ error: err }));
+            .catch(err => this.setState({ error: err }));
     };
 
     handleBookSaveBook = bookId => {
-        const book = this.state.bookList.find(book => book.bookId === bookId)
-
-        API.insertBook(book).then(() => {
+        const book = this.state.bookList.find(book => book.bookId === bookId);
+        API.insertBook(book)
+          .then(() => {
             const savedBookIds = [...this.state.savedBookIds, bookId];
-            this.setState()
-        })
-    };
+            this.setState({ savedBookIds });
+          })
+          .catch(err => this.setState({ error: err }));
+      };
 
 
     render() {
+
+        console.log(this.state.bookList)
         return (
             <>
                 <Jumbotron
@@ -87,7 +90,26 @@ class Search extends Component {
                 <Container>
                     <Row>
                         <Column>
-                            <Card title={'Search for a book'}></Card>
+                            <Card title={'Search for a book'}>
+                                <form onSubmit={this.handleFormSubmit}>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Search for a book"
+                                        onChange={this.handleInputChange}
+                                        value={this.state.userSearch}
+                                        name="userSearch"
+                                    />
+                                    {this.state.error && !this.state.userSearch.length && (
+                                        <div className="alert alert-danger my-2">
+                                            {this.state.error}
+                                        </div>
+                                    )}
+                                    <button type="submit" className="btn btn-block btn-dark mt-2">
+                                        Search For Books
+                                    </button>
+                                </form>
+                            </Card>
                         </Column>
                     </Row>
                 </Container>
