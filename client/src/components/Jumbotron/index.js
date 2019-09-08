@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Column from '../Column';
 import Container from '../Container';
 import Row from '../Row';

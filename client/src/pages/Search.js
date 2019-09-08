@@ -141,7 +141,7 @@ class Search extends Component {
                                             onClick={() =>
                                                 this.handleBookSaveBook(book.bookId)
                                             }>
-                                            Save Book
+                                            Save
                                         </button>
 
                                     </Card>
