@@ -18,3 +18,5 @@ const Column = ({ base = 12, sm, md, lg, xl, children }) => {
 
     return <div className={columnClassName}>{children}</div>
 }
+
+export default Column;

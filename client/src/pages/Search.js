@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import API from '../utils/API'
 import { eventNames } from 'cluster';
 
-class Search extends Component{
+class Search extends Component {
 
     state = {
         userSearch: "",
@@ -12,9 +12,9 @@ class Search extends Component{
     }
 
     handleInputChange = e => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         this.setState({
-            [name]:value
+            [name]: value
         });
     };
 
@@ -23,42 +23,42 @@ class Search extends Component{
 
         // if someone submits the form and the term is an empty string
         // this function will stop running and show an error
-        if (this.state.userSearch === ''){
-            return this.setState({error: 'Please put in a title'})
+        if (this.state.userSearch === '') {
+            return this.setState({ error: 'Please put in a title' })
         };
 
         API.getGoogleBooks(this.state.userSearch)
-        .then(res => {
-            const {items} = res.data
-            this.setState({error: null})
+            .then(res => {
+                const { items } = res.data
+                this.setState({ error: null })
 
-            const bookListCleaned = items.map(book => {
-                return{
-                    // creating new object for each book brought back
-                    bookId: book.id,
-                    title: book.volumeInfo.title,
-                    authors: book.volumeInfo.authors,
-                    description: book.volumeInfo.description,
-                    image: book.volumeInfo.imageLinks 
-                        ? book.volumeInfo.imageLinks.thumbnail 
-                        : ""
-                }
-            });
+                const bookListCleaned = items.map(book => {
+                    return {
+                        // creating new object for each book brought back
+                        bookId: book.id,
+                        title: book.volumeInfo.title,
+                        authors: book.volumeInfo.authors,
+                        description: book.volumeInfo.description,
+                        image: book.volumeInfo.imageLinks
+                            ? book.volumeInfo.imageLinks.thumbnail
+                            : ""
+                    }
+                });
 
-            return this.setState({
-                bookList: bookListCleaned, userSearch: ""});
+                return this.setState({
+                    bookList: bookListCleaned, userSearch: ""
+                });
             }).then(this.getSavedBooks)
-            .catch(err => this.setState({error: err}));
-        };
+            .catch(err => this.setState({ error: err }));
     };
 
     getSavedBooks = () => {
         API.getBook()
-        .then(res => {
-            const savedBooksIds = res.data.map(book => book.bookId);
-            this.setState({savedBooksIds});
-        })
-        .catch(err => this.setSTate({error: err}));
+            .then(res => {
+                const savedBooksIds = res.data.map(book => book.bookId);
+                this.setState({ savedBooksIds });
+            })
+            .catch(err => this.setSTate({ error: err }));
     };
 
     handleBookSaveBook = bookId => {
@@ -68,13 +68,27 @@ class Search extends Component{
             const savedBookIds = [...this.state.savedBookIds, bookId];
             this.setState()
         })
-    }
+    };
 
 
-    render(){
-        return(
-            <h1>Hello this is the search page</h1>
+    render() {
+        return (
+            <>
+                <Jumbotron
+                    fluid
+                    bg={'dark'}
+                    color={'light'}
+                />
+                <Container>
+                    <Row>
+                        <Column>
+                            <Card title={'Search for a book'}></Card>
+                        </Column>
+                    </Row>
+                </Container>
+            </>
         )
+
     }
 }
 
