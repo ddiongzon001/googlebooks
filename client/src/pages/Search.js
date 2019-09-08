@@ -113,6 +113,21 @@ class Search extends Component {
                         </Column>
                     </Row>
                 </Container>
+                <Container>
+                    <Row>
+                        <Column>
+                        {this.state.bookList.map(book => {
+                            return(
+                                <Card
+                                key={book.bookId}
+                                title={book.title}>
+                                    
+                                </Card>
+                            )
+                        })}
+                        </Column>
+                    </Row>
+                </Container>
             </>
         )
 
